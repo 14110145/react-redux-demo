@@ -1,5 +1,7 @@
-import { createStore } from "redux";
-import cakeReducer from "./cake/cakeReducer";
+import { createStore, compose, applyMiddleware } from "redux";
+import logger from "redux-logger";
+import rootReducer from "./rootReducer";
 
-const store = createStore(cakeReducer);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger)));
 export default store;
